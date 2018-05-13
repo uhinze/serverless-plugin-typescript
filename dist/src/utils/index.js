@@ -6,7 +6,7 @@ const isMissingSymlinkPermission = (error) => {
     return error.code === 'EPERM' && error.errno === -4048;
 };
 const copyIfMissingSymlinkPermission = (srcpath, dstpath, error) => {
-    if (this.isMissingSymlinkPermission(error)) {
+    if (isMissingSymlinkPermission(error)) {
         fs.copySync(srcpath, dstpath);
     }
     else {
@@ -18,7 +18,7 @@ exports.symlink = (srcpath, dstpath, type) => {
         fs.symlinkSync(srcpath, dstpath, type);
     }
     catch (error) {
-        this.copyIfMissingSymlinkPermission(srcpath, dstpath, error);
+        copyIfMissingSymlinkPermission(srcpath, dstpath, error);
     }
 };
 //# sourceMappingURL=index.js.map
