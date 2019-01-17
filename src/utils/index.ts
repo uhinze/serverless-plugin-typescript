@@ -19,7 +19,7 @@ const copyIfMissingSymlinkPermission =
     }
   }
 
-export const symlink = (srcpath: string, dstpath: string, type?: string) => {
+export const symlink = (srcpath: string, dstpath: string, type?: fs.SymlinkType) => {
   try {
     fs.symlinkSync(srcpath, dstpath, type)
   } catch (error) {
